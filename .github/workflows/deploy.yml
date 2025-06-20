@@ -6,6 +6,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: PRD
 
     steps:
       - name: 🔄 Checkout do repositório
@@ -21,7 +22,6 @@ jobs:
 
       - name: 🚀 Deploy via SSH
         uses: easingthemes/ssh-deploy@main
-        environment: PRD
         with:
             SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
             ARGS: "-rlgoDzvc --delete"
