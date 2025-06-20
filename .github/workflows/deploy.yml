@@ -1,0 +1,33 @@
+name: Deploy React to Hostinger
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔄 Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: 🧰 Instalar dependências
+        run: |
+          npm install
+
+      - name: 🏗️ Build do projeto
+        run: |
+          npm run build
+
+      - name: 🚀 Deploy via SSH
+        uses: easingthemes/ssh-deploy@main
+        environment: PRD
+        with:
+            SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+            ARGS: "-rlgoDzvc --delete"
+            SOURCE: "public/"
+            REMOTE_HOST: ${{ vars.REMOTE_HOST }}
+            REMOTE_USER: ${{ vars.REMOTE_USER }}
+            REMOTE_PORT: ${{ vars.REMOTE_PORT }}
+            TARGET: ${{ vars.TARGET }}
+        
