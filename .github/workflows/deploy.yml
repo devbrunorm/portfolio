@@ -33,14 +33,4 @@ jobs:
             TARGET: ${{ vars.TARGET }}
 
       - name: 🖥️ Trigger serve on VPS
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: ${{ secrets.REMOTE_PORT }}
-          script: |
-            cd ${{ vars.TARGET }}
-            npm install -g serve
-            pkill -f "serve" || true
-            nohup serve -s . -l 3000 &
+        run: bash serve.sh ${{ vars.TARGET }}
