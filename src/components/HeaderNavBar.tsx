@@ -11,7 +11,7 @@ const items = [
 
 export default function HeaderNavBar() {
   return (
-    <nav className="flex justify-center bg-indigo-600 p-6 lg:px-8" aria-label="Global">
+    <nav className="flex justify-center bg-sky-600 p-6 lg:px-8" aria-label="Global">
       <div className="hidden lg:flex lg:gap-x-12">{items}</div>
     </nav>
   );
