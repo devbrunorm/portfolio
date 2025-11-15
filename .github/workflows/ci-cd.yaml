@@ -38,6 +38,7 @@ jobs:
   deploy-to-vps:
     needs: build-and-push
     runs-on: ubuntu-latest
+    environment: PRD
     steps:
       - name: Deploy to VPS via SSH and update k3s
         uses: appleboy/ssh-action@v0.1.8
