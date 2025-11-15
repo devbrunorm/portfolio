@@ -50,11 +50,16 @@ jobs:
           script: |
             set -euo pipefail
             IMAGE=${{ secrets.IMAGE_NAME }}:${{ github.sha }}
-            if ! sudo k3s ctr images pull docker.io/${IMAGE}; then
-              docker pull docker.io/${IMAGE}
-              docker save docker.io/${IMAGE} -o /tmp/image.tar
+            
+            # Login Docker
+            echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+            
+            if ! sudo k3s ctr images pull docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE}; then
+              docker pull docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE}
+              docker save docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE} -o /tmp/image.tar
               sudo k3s ctr images import /tmp/image.tar
               rm -f /tmp/image.tar
             fi
-            kubectl -n default set image deployment/frontend-app frontend-container=${IMAGE}
+            
+            kubectl -n default set image deployment/frontend-app frontend-container=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE}
             kubectl -n default rollout status deployment/frontend-app --timeout=120s
