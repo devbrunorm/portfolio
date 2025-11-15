@@ -32,8 +32,8 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-            ${{ secrets.IMAGE_NAME }}:${{ github.sha }}
-            ${{ secrets.IMAGE_NAME }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE_NAME }}:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE_NAME }}:latest
 
   deploy-to-vps:
     needs: build-and-push
