@@ -5,6 +5,6 @@ type HeaderProps = {
 
 export default function HeaderNavBarItem({name, href}: HeaderProps) {
   return (
-    <a href={href} className="text-sm/6 font-semibold text-gray-900">{name}</a>
+    <a href={href} className="text-sm/6 font-semibold text-white text-gray-900">{name}</a>
   );
 }
