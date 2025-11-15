@@ -28,8 +28,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./prd
-          file: ./prd/Dockerfile
+          context: .
+          file: Dockerfile
           push: true
           tags: |
             ${{ secrets.IMAGE_NAME }}:${{ github.sha }}
