@@ -1,12 +1,12 @@
 import HeaderNavBarItem from "./HeaderNavBarItem";
 
 const items = [
-    { name: 'Education', href: '#' },
-    { name: 'Experience', href: '#' },
-    { name: 'Projects', href: '#' },
-    { name: 'Contact', href: '#' },
+    { name: 'Education', href: 'education' },
+    { name: 'Experience', href: 'experience' },
+    { name: 'Projects', href: 'projects' },
+    { name: 'Contact', href: 'contact' },
 ].map(item => 
-    <HeaderNavBarItem name={item.name} href={item.href} />
+    <HeaderNavBarItem id={item.href} text={item.name} />
 );
 
 export default function HeaderNavBar() {

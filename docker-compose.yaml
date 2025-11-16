@@ -1,5 +1,9 @@
 services:
-  portfolio:
-    build: .
+  # portfolio:
+  #   build: .
+  #   ports:
+  #     - "3000:80" 
+  mongodb:
+    image: mongo:latest
     ports:
-      - "3000:80" 
+      - "27017:27017"

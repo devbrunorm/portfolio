@@ -1,10 +1,17 @@
-type HeaderProps = {
-  name: string;
-  href: string;
+import { Link } from 'react-router-dom';
+
+type HeaderNavBarItemProps = {
+  id: string;
+  text: string;
 };
 
-export default function HeaderNavBarItem({name, href}: HeaderProps) {
+export default function HeaderNavBarItem({ id, text }: HeaderNavBarItemProps) {
   return (
-    <a href={href} className="text-sm/6 font-semibold hover:bg-sky-500 text-white text-gray-900">{name}</a>
+    <Link
+      to={`/item/${id}`}
+      className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-sky-500 hover:text-white"
+    >
+      {text}
+    </Link>
   );
 }
