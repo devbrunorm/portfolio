@@ -1,36 +1,28 @@
-import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Title from './components/Title';
-import Subtitle from './components/Subtitle';
-import Button from './components/Button';
-import ItemPage from './pages/ItemPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Header from './components/Header'
+import MainPage from './pages/MainPage'
+import Education from './pages/Education'
+import Experience from './pages/Experience'
+import Projects from './pages/Projects'
+import Contact from './pages/Contact'
 
-function Home() {
+function App() {
   return (
-    <>
+    <BrowserRouter>
+      <Header />
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          <div className="text-center">
-            <Title text="Bruno Renzi Marques" />
-            <Subtitle text="Data Engineer & Backend Developer" />
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Button text="Contact me" href="#" />
-            </div>
-          </div>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/education" element={<Education />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
         </div>
       </div>
-    </>
-  );
+    </BrowserRouter>
+  )
 }
 
-export default function App() {
-  return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/item/:id" element={<ItemPage />} />
-      </Routes>
-    </>
-  );
-}
+export default App;
